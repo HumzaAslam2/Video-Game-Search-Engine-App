@@ -8,12 +8,12 @@ const app = express();
 // Website port number
 const port = 3000;
 // IGDB Acess Token
-const bearerToken = "p0a8zg2agodsppssrkrv7ueyw5zznx";
+const bearerToken = "";
 // API Header
 const config = {
     headers: {
         "Accept": "application/json",
-        "Client-ID": "x0f2ay33mf0fs5shwww8ig41e3hytt",
+        "Client-ID": "",
         "Authorization": `Bearer ${bearerToken}`
     }
 };
