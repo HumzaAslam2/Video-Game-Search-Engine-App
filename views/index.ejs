@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Video Game Search Engine</title>
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
+        <link rel="stylesheet" href="styles/styles.css">
+        <link rel="icon" href="images/icons8-gameboy-64.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    </head>
+
+    <body data-bs-theme="dark">
+        <section id="header">
+            <div class="container d-flex justify-content-center align-items-center h-100 text-center">
+                <div class="row">
+                    <h1 class="roboto-slab-bold">Video Game Search Engine</h1>
+                    <p class="roboto-regular">The one and stop place to find information on video games</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="search-engine">
+            <div class="container text-center">
+                <div class="row">
+                    <h2 class="roboto-slab-bold">Search</h2>
+                    <form class="roboto-regular" method="POST">
+                        <div class="form-section" style="margin-top: 0">
+                            <label>Video Game Name: </label>
+                            <input type="text" name="videoGameName">
+                        </div>
+                        <div class="form-section">
+                            <label># of Results (all results by default): </label>
+                            <input type="text" name="resultLimit">
+                        </div>
+                        <input class="btn-grad" type="submit" formaction="/search">
+                    </form>
+                    <hr />
+                    <% if (locals.games) { %>
+                        <% for (var i = 0; i < games.length; i++) { %>
+                            <p class="roboto-regular">Name: <%= games[i].name %></p>
+                            <% if (games[i].companyNames.length > 0) { %>
+                                <h3 class="roboto-slab-bold">Companies</h3>
+                                <% for (var j = 0; j < games[i].companyNames.length; j++) { %>
+                                    <li class="roboto-regular"><%= games[i].companyNames[j] %></li>
+                                <% } %>
+                            <% } %>
+                            <% if (games[i].rating !== "None") { %>
+                                <p class="roboto-regular">Rating: <%= games[i].rating %> / 100</p>
+                            <% } %>
+                            <% if (games[i].summary !== "None") { %>
+                                <h3 class="roboto-slab-bold">Summary</h3>
+                                <p class="roboto-regular"><%= games[i].summary %></p>
+                            <% } %>
+                            <% if (games[i].storyline !== "None") { %>
+                                <h3 class="roboto-slab-bold">Storyline</h3>
+                                <p class="roboto-regular"><%= games[i].storyline %></p>
+                            <% } %>
+                            <% if (games[i].platforms.length > 0) { %>
+                                <h3 class="roboto-slab-bold">Platforms</h3>
+                                <% for (var j = 0; j < games[i].platforms.length; j++) { %>
+                                    <li class="roboto-regular"><%= games[i].platforms[j] %></li>
+                                <% } %>
+                            <% } %>
+                            <hr />
+                        <% } %>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
